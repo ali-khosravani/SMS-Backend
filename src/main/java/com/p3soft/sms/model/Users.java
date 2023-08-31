@@ -2,17 +2,19 @@ package com.p3soft.sms.model;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+/**
+ * @author Ali Khosravani.
+ * @since 1402/06/08
+ */
 @Entity
 @Table(name = "tbl_users")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Users {
 
     @Id
@@ -26,16 +28,4 @@ public class Users {
     private String email;
     @Column(nullable = false)
     private String password;
-    @Override
-    public String toString() {
-        return "Users{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
-
-
 }

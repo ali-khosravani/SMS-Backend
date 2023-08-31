@@ -1,16 +1,18 @@
 package com.p3soft.sms.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
+/**
+ * @author  Ali Khosravani.
+ * @version  1.0
+ * @since 1402/06/08
+ * Desc Message Class to show error message.
+ */
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Message extends Throwable {
-    public Message(boolean hasError, String message) {
-        this.hasError = hasError;
-        this.message = message;
-    }
-
     private boolean hasError;
     private String message;
 }
