@@ -9,6 +9,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author Ali Kosravani
+ * @since 1402/06/08
+ */
 @Service
 @AllArgsConstructor
 public class UsersServiceImpl implements UsersService {
@@ -22,23 +26,24 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public Users getUserById(Long userId) {
         Optional<Users> optionalUsers =usersRepository.findById(userId);
-        return optionalUsers.get();
+        return optionalUsers.orElse(null);
     }
 
     @Override
     public List<Users> getAllUsers() {
-        return (List<Users>) usersRepository.findAll();
+        return usersRepository.findAll();
     }
+
 
     @Override
     public Users updateUser(Users users) {
-        Users existingUser = usersRepository.findById(users.getId()).get();
+        Users existingUser = usersRepository.findById(users.getId()).orElse(null);
+        assert existingUser != null;
         existingUser.setFirstName(users.getFirstName());
         existingUser.setLastName((users.getLastName()));
         existingUser.setEmail(users.getEmail());
         existingUser.setPassword(users.getPassword());
-        Users updatedUser=usersRepository.save(existingUser);
-        return updatedUser;
+        return usersRepository.save(existingUser);
     }
 
     @Override
